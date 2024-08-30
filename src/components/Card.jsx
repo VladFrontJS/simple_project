@@ -28,6 +28,7 @@ const CardTitle = styled.h3`
     margin: 0;
     font-size: var(--fs-md);
     font-bold: var(--fw-bold);
+    color: var(--colors-text);
 `;
 
 const CardList = styled.ul`
@@ -40,6 +41,7 @@ const CardListItem = styled.li`
     font-size: var(--fs-md);
     line-height: 1.5;
     font-weight: var(--fw-light);
+    color: var(--colors-text);
 
     & > b {
         font-weight: var(--fw-bold);
