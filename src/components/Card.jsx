@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 const Wrapper = styled.article`
     border-radius: var(--radii);
     background-color: var(--colors-ui-base);
@@ -46,21 +48,23 @@ const CardListItem = styled.li`
 
 const Card = ({ img, name, info = [], onClick }) => {
     return (
-        <Wrapper onClick={onClick}>
-            <CardImage src={img} alt={name} />
-            <CardBody>
-                <CardTitle>{name}</CardTitle>
-                <CardList>
-                    {info.map(el => {
-                        return (
-                            <CardListItem key={el.title}>
-                                <b>{el.title}:</b> {el.description}
-                            </CardListItem>
-                        );
-                    })}
-                </CardList>
-            </CardBody>
-        </Wrapper>
+        <Link to={`/country/${name}`}>
+            <Wrapper onClick={onClick}>
+                <CardImage src={img} alt={name} />
+                <CardBody>
+                    <CardTitle>{name}</CardTitle>
+                    <CardList>
+                        {info.map(el => {
+                            return (
+                                <CardListItem key={el.title}>
+                                    <b>{el.title}:</b> {el.description}
+                                </CardListItem>
+                            );
+                        })}
+                    </CardList>
+                </CardBody>
+            </Wrapper>
+        </Link>
     );
 };
 

@@ -1,51 +1,25 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import Controls from './components/Controls';
 import Header from './components/Header';
 import Main from './components/Main';
-import List from './components/List';
-import Card from './components/Card';
-import { ALL_COUNTRIES } from './config';
+
+import HomePage from './pages/HomePage';
+import Details from './pages/Details';
+import NotFound from './pages/NotFound';
 
 function App() {
     const [countries, setCountries] = useState([]);
-
-    console.log(countries);
-
-    useEffect(() => {
-        axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data));
-    }, []);
 
     return (
         <>
             <Header />
             <Main>
-                <Controls />
-                <List>
-                    {countries.map(country => {
-                        const countryInfo = {
-                            img: country.flags.png,
-                            name: country.name.common,
-                            info: [
-                                {
-                                    title: 'Population',
-                                    description: country.population.toLocaleString(),
-                                },
-                                {
-                                    title: 'Region',
-                                    description: country.region,
-                                },
-                                {
-                                    title: 'Capital',
-                                    description: country.capital[0],
-                                },
-                            ],
-                        };
-
-                        return <Card key={country.name.common} {...countryInfo} />;
-                    })}
-                </List>
+                <Routes>
+                    <Route path="/" element={<HomePage countries={countries} setCountries={setCountries} />} />
+                    <Route path="/country/:name" element={<Details />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
             </Main>
         </>
     );
