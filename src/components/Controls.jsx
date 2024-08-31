@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
     @media(min-width: 767px) {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-between; 
         align-item: center;
     })
 `;
